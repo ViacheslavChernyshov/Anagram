@@ -1,13 +1,11 @@
-package test.com.olpi.anagram;
+package com.olpi.anagram;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.olpi.anagram.Reverse;
-
 public class testReverse {
-	Reverse reverse = new Reverse();
+	private Reverse reverse = new Reverse();
 
 	@Test(expected = NullPointerException.class)
 	public final void ShouldThrowExceptionWhenTextNull() {
@@ -17,7 +15,7 @@ public class testReverse {
 	}
 
 	@Test
-	public final void ShouldReverseLeavingNonLettersInTheirPlaceWhenTextHasNonletters() {
+	public final void ShouldReverseLeavingNonLettersInTheirPlaceWhenTextHasNonLetters() {
 		String actual = "yhuj#2uf";
 		String expected = "fuju#2hy";
 		assertEquals(expected, reverse.reverseText(actual));
@@ -41,6 +39,13 @@ public class testReverse {
 	public final void ShouldReverseTextLeavingNonLettersInTheirPlaceWhenTextHasNonletters() {
 		String actual = "abcdef yhuj#2uf";
 		String expected = "fujuhy fedc#2ba";
+		assertEquals(expected, reverse.reverseText(actual));
+	}
+
+	@Test
+	public final void ShouldReturnTextWhenTextHasOnlyNonLetters() {
+		String actual = "12345";
+		String expected = "12345";
 		assertEquals(expected, reverse.reverseText(actual));
 	}
 }

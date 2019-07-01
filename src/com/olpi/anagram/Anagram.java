@@ -17,7 +17,7 @@ public class Anagram {
 			}
 			Reverse reverse = new Reverse();
 			String finishText = reverse.reverseText(initialText);
-			System.out.print(finishText + " ");
+			System.out.println(finishText + " ");
 		}
 		scan.close();
 	}

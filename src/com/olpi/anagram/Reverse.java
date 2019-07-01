@@ -6,8 +6,7 @@ public class Reverse {
 		if (initialText == null) {
 			throw new NullPointerException("String is null");
 		}
-		String reverseText = reverseOnlyLetters(initialText);
-		return reverseText;
+		return reverseOnlyLetters(initialText);
 	}
 
 	private String reverseOnlyLetters(String initialText) {
@@ -18,15 +17,19 @@ public class Reverse {
 
 		while (secondIndex >= 0 && firstIndex <= initialText.length() - 1) {
 
-			while (!Character.isLetter(initialText.charAt(firstIndex))) {
+			while (!Character.isLetter(initialText.charAt(firstIndex)) && firstIndex < initialText.length() - 1) {
 				firstIndex++;
 			}
-			while (!Character.isLetter(finalText.charAt(secondIndex))) {
+			while (!Character.isLetter(finalText.charAt(secondIndex)) && secondIndex > 0) {
 				secondIndex--;
 			}
-			finalText.setCharAt(secondIndex, initialText.charAt(firstIndex));
+			if (Character.isLetter(finalText.charAt(secondIndex))
+					&& Character.isLetter(initialText.charAt(firstIndex))) {
+				finalText.setCharAt(secondIndex, initialText.charAt(firstIndex));
+			}
 			firstIndex++;
 			secondIndex--;
+
 		}
 		return finalText.toString();
 	}
