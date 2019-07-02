@@ -2,44 +2,45 @@ package com.olpi.anagram;
 
 public class Reverse {
 
-    public String reverseText(String initialText) throws NullPointerException {
-        if (initialText == null) {
+    public String reverseText(String text) throws NullPointerException {
+        if (text == null) {
             throw new NullPointerException("String is null");
         }
-        return reverseOnlyLetters(initialText);
+        return splitSentenceIntoWordsAndReverseIt(text);
+    }
+
+    private String splitSentenceIntoWordsAndReverseIt(String text) {
+
+        StringBuilder word = new StringBuilder();
+        StringBuilder finalText = new StringBuilder();
+
+        for (int indexText = 0; indexText < text.length(); indexText++) {
+            word.append(text.charAt(indexText));
+            if (text.charAt(indexText) == ' ' || indexText == text.length() - 1) {
+                finalText.append(reverseOnlyLetters(word.toString()));
+                word.setLength(0);
+            }
+        }
+        return finalText.toString();
     }
 
     private String reverseOnlyLetters(String text) {
+        StringBuilder finalText = new StringBuilder(text);
 
-        StringBuilder finalText = new StringBuilder();
-        StringBuilder endText = new StringBuilder();
+        for (int firstIndex = 0, secondIndex = text.length() - 1; firstIndex <= text.length() - 1
+                && secondIndex >= 0; firstIndex++, secondIndex--) {
 
-        for (int x = 0; x < text.length(); x++) {
-            finalText.append(text.charAt(x));
+            for (; !Character.isLetter(text.charAt(firstIndex)) && firstIndex < text.length() - 1; firstIndex++) {
+            }
 
-            if (text.charAt(x) == ' ' || x == text.length() - 1) {
-                String initialText = finalText.toString();
+            for (; !Character.isLetter(finalText.charAt(secondIndex)) && secondIndex > 0; secondIndex--) {
+            }
 
-                for (int firstIndex = 0, secondIndex = initialText.length() - 1; firstIndex <= initialText.length() - 1
-                        && secondIndex >= 0; firstIndex++, secondIndex--) {
-
-                    for (; !Character.isLetter(initialText.charAt(firstIndex))
-                            && firstIndex < initialText.length() - 1; firstIndex++) {
-                    }
-
-                    for (; !Character.isLetter(finalText.charAt(secondIndex)) && secondIndex > 0; secondIndex--) {
-                    }
-
-                    if (Character.isLetter(initialText.charAt(firstIndex))
-                            && Character.isLetter(finalText.charAt(secondIndex))) {
-                        finalText.setCharAt(secondIndex, initialText.charAt(firstIndex));
-                    }
-                }
-                endText.append(finalText.toString());
-                finalText.setLength(0);
+            if (Character.isLetter(text.charAt(firstIndex)) && Character.isLetter(finalText.charAt(secondIndex))) {
+                finalText.setCharAt(secondIndex, text.charAt(firstIndex));
             }
         }
-        return endText.toString();
+        return finalText.toString();
     }
-
+    
 }
