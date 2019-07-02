@@ -11,10 +11,10 @@ public class Anagram {
 
         while (scan.hasNext()) {
             String initialText = scan.nextLine();
-
             if (initialText.equalsIgnoreCase("exit")) {
                 break;
             }
+            
             Reverse reverse = new Reverse();
             String finishText = reverse.reverseText(initialText);
             System.out.println(finishText);

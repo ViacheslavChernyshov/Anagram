@@ -36,9 +36,9 @@ public class testReverse {
 	}
 
 	@Test
-	public final void ShouldReverseTextLeavingNonLettersInTheirPlaceWhenTextHasNonletters() {
+	public final void ShouldReverseTextLeavingNonLettersInTheirPlaceWhenTextHasNonLetters() {
 		String actual = "abcdef yhuj#2uf";
-		String expected = "fujuhy fedc#2ba";
+		String expected = "fedcba fuju#2hy";
 		assertEquals(expected, reverse.reverseText(actual));
 	}
 
