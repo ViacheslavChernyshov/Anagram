@@ -1,23 +1,38 @@
 package com.olpi.anagram;
 
-import java.util.Scanner;
+import java.util.StringJoiner;
 
 public class Anagram {
 
-    public static void main(String[] args) {
+    public String process(String text) {
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter \"exit\" to close the program. \nWrite a text:");
-
-        while (scan.hasNext()) {
-            String initialText = scan.nextLine();
-            if (initialText.equalsIgnoreCase("exit")) {
-                break;
-            }
-            Reverse reverse = new Reverse();
-            String finishText = reverse.reverseText(initialText);
-            System.out.println(finishText);
+        if (text == null) {
+            throw new IllegalArgumentException("String is null");
         }
-        scan.close();
+        StringJoiner joiner = new StringJoiner(" ");
+        for (String word : text.split(" ")) {
+            joiner.add(reverse(word));
+        }
+        return joiner.toString();
+    }
+
+    private String reverse(String word) {
+
+        char[] chars = word.toCharArray();
+        
+        for (int leftIndex = 0, rightIndex = chars.length - 1; leftIndex < rightIndex;) {
+            if (Character.isLetter(chars[leftIndex]) && Character.isLetter(chars[rightIndex])) {
+                char tempValue = chars[leftIndex];
+                chars[leftIndex] = chars[rightIndex];
+                chars[rightIndex] = tempValue;
+                leftIndex++;
+                rightIndex--;
+            } else if (!Character.isLetter(chars[leftIndex])) {
+                leftIndex++;
+            } else if (!Character.isLetter(chars[rightIndex])) {
+                rightIndex--;
+            }
+        }
+        return new String(chars);
     }
 }
