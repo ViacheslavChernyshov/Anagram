@@ -9,6 +9,9 @@ public class Anagram {
         if (text == null) {
             throw new IllegalArgumentException("String is null");
         }
+        if (text.trim().isEmpty()) {
+            return text;
+         } 
         StringJoiner joiner = new StringJoiner(" ");
         for (String word : text.split(" ")) {
             joiner.add(reverse(word));
