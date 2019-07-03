@@ -11,7 +11,7 @@ public class Anagram {
         }
         if (text.trim().isEmpty()) {
             return text;
-         } 
+        }
         StringJoiner joiner = new StringJoiner(" ");
         for (String word : text.split(" ")) {
             joiner.add(reverse(word));
@@ -22,7 +22,7 @@ public class Anagram {
     private String reverse(String word) {
 
         char[] chars = word.toCharArray();
-        
+
         for (int leftIndex = 0, rightIndex = chars.length - 1; leftIndex < rightIndex;) {
             if (Character.isLetter(chars[leftIndex]) && Character.isLetter(chars[rightIndex])) {
                 char tempValue = chars[leftIndex];

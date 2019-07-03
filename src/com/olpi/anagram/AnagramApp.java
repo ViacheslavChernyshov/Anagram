@@ -8,13 +8,13 @@ public class AnagramApp {
 
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter \"exit\" to close the program. \nWrite a text:");
+        Anagram reverse = new Anagram();
 
         while (scan.hasNext()) {
             String initialText = scan.nextLine();
             if (initialText.equalsIgnoreCase("exit")) {
                 break;
             }
-            Anagram reverse = new Anagram();
             String finishText = reverse.process(initialText);
             System.out.println(finishText);
         }
